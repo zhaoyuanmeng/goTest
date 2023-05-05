@@ -1,23 +1,19 @@
-// 包声明语句
 package main
 
-import "fmt"
+import (
+	"github.com/gin-gonic/gin"
+)
 
-func main()  {
-	test()
-}
-
-func test()  {
-	const test = 1
-	var str string 
-	var a,b,c int 
-	var e,f = 1,false 
-	p:=&f
-	*p = true
-	i,j :=0,1
-	fmt.Println("test",test)
-	fmt.Println("str",str)
-	fmt.Println("data:",a,b,c)
-	fmt.Println("stat:",e,f)
-	fmt.Println("stat:",i,j)
+func main() {
+	// 创建一个默认的路由引擎
+	ginServer := gin.Default()
+	// 配置路由
+	ginServer.GET("/", func(context *gin.Context) {
+		context.JSON(200, gin.H{
+			"msg": "Hello world!",
+		})
+	})
+    // 启动 HTTP 服务,默认在 0.0.0.0:8080启动服务
+	ginServer.Run()
+    // ginServer.Run(":8081")	使用8081端口启动服务
 }
